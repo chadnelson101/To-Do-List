@@ -3,11 +3,11 @@ window.onload = function () {
 };
 
 document.querySelector('#add').onclick = function () {
-    var taskInput = document.querySelector('#newtask input');
+    let taskInput = document.querySelector('#newtask input');
     if (taskInput.value.length === 0) {
         alert("Please Enter a Task");
     } else {
-        var tasksContainer = document.querySelector('#tasks');
+        let tasksContainer = document.querySelector('#tasks');
         tasksContainer.innerHTML += `
             <div class="task">
                 <span class="taskname">
@@ -22,8 +22,8 @@ document.querySelector('#add').onclick = function () {
         // Save tasks to local storage
         saveTasks();
 
-        var current_tasks = document.querySelectorAll(".delete");
-        for (var i = 0; i < current_tasks.length; i++) {
+        let current_tasks = document.querySelectorAll(".delete");
+        for (let i = 0; i < current_tasks.length; i++) {
             current_tasks[i].onclick = function () {
                 this.parentNode.remove();
                 // Save tasks to local storage after deletion
@@ -37,8 +37,8 @@ document.querySelector('#add').onclick = function () {
 };
 
 document.querySelector('#sort').onclick = function () {
-    var tasksContainer = document.querySelector('#tasks');
-    var tasks = Array.from(tasksContainer.children);
+    let tasksContainer = document.querySelector('#tasks');
+    let tasks = Array.from(tasksContainer.children);
     tasks.sort((a, b) => {
         var textA = a.querySelector('.taskname').textContent.toLowerCase();
         var textB = b.querySelector('.taskname').textContent.toLowerCase();
@@ -52,13 +52,13 @@ document.querySelector('#sort').onclick = function () {
 };
 
 function saveTasks() {
-    var tasksContainer = document.querySelector('#tasks');
+    let tasksContainer = document.querySelector('#tasks');
     localStorage.setItem('tasks', tasksContainer.innerHTML);
 }
 
 function loadTasks() {
-    var tasksContainer = document.querySelector('#tasks');
-    var savedTasks = localStorage.getItem('tasks');
+    let tasksContainer = document.querySelector('#tasks');
+    let savedTasks = localStorage.getItem('tasks');
     if (savedTasks) {
         tasksContainer.innerHTML = savedTasks;
         attachDeleteHandlers();
@@ -67,7 +67,7 @@ function loadTasks() {
 
 function attachDeleteHandlers() {
     var current_tasks = document.querySelectorAll(".delete");
-    for (var i = 0; i < current_tasks.length; i++) {
+    for (let i = 0; i < current_tasks.length; i++) {
         current_tasks[i].onclick = function () {
             this.parentNode.remove();
             saveTasks();
